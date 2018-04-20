@@ -1,0 +1,1 @@
+[{"id":1,"Name":"Sample1","CookingTime":80,"CookingPower":100,"StirAt":0,"WaitTime":0,"Weight":100}]
