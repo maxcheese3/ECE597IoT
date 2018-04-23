@@ -16,7 +16,8 @@ fs.readFile('QR.txt', 'utf8', function(err, data) {
 
 
 var con = mysql.createConnection({
-  host: "localhost",
+  //host: "localhost",
+  host: "137.112.234.121",
   user: "Admin",
   password: "Password",
   database: "SmartWave"
@@ -38,7 +39,9 @@ con.connect(function(err) {
 	    throw err;
 	  else
         console.log('\nUpdated Info!');
+	process.exit();
     });
 	});
+
 });
 

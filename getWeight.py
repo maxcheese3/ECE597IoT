@@ -4,9 +4,9 @@ import sys
 from hx711 import HX711
 
 def cleanAndExit():
-    print "Cleaning..."
+    #print "Cleaning..."
     GPIO.cleanup()
-    print "Bye!"
+    #print "Bye!"
     sys.exit()
 
 hx = HX711(5, 6)
@@ -31,8 +31,6 @@ hx.set_reference_unit(92)
 hx.reset()
 hx.tare()
 
-while True:
-    try:
         # These three lines are usefull to debug wether to use MSB or LSB in the reading formats
         # for the first parameter of "hx.set_reading_format("LSB", "MSB")".
         # Comment the two lines "val = hx.get_weight(5)" and "print val" and uncomment the three lines to see what it prints.
@@ -41,11 +39,14 @@ while True:
         #print binary_string + " " + np_arr8_string
         
         # Prints the weight. Comment if you're debbuging the MSB and LSB issue.
-        val = hx.get_weight(5)
-        print val
+time.sleep(0.5)
+val = hx.get_weight(5)
+print val
+file = open("weight.txt","w")
+file.write(str(val)) 
+ 
+file.close() 
 
-        hx.power_down()
-        hx.power_up()
-        time.sleep(0.5)
-    except (KeyboardInterrupt, SystemExit):
-        cleanAndExit()
+hx.power_down()
+hx.power_up()
+        #time.sleep(0.5)
