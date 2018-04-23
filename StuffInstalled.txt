@@ -1,4 +1,5 @@
 node
 npm
+	mysql
 temp library
 load cell library
