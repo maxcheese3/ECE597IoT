@@ -1,5 +1,4 @@
 node
-npm
-	mysql
-temp library
-load cell library
+npm -mysql
+temp library is needed
+load cell library is needed
