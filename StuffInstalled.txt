@@ -1,4 +1,5 @@
 node
 npm -mysql
+npn install twitter
 temp library is needed
 load cell library is needed
