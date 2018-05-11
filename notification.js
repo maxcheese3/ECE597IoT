@@ -1,4 +1,16 @@
 var TwitterPackage = require('twitter');
+var fs = require('fs');
+
+var cookingInfo = ""
+
+fs.readFileSync('CookingInfo.txt', function(err, data) {
+	if (err) throw err;
+	console.log(data);
+	cookingInfo = JSON.parse(data);
+	console.log(cookingInfo['Name'])
+})
+	
+//var message = "Your " + cookingInfo
 
 var secret = {
   consumer_key: '64faDumcJsEVKNjgKgSvainJV',
