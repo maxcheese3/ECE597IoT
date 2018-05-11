@@ -14,4 +14,7 @@ if [ $retVal -ne 0 ];
     echo "QR Code found:  "
     echo ${QR:8} | tr -d '\n' > QR.txt
     node SmartWaveIoTPortion.js
+    SLEEPTIME=$(cat SleepTime.txt)
+    sleep $(($SLEEPTIME/10))
+    node notification.js
 fi

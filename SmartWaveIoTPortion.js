@@ -6,18 +6,14 @@ var http = require('http');
 var QRCode = 1;
 var CookingInfo = 1;
 
-fs.readFile('QR.txt', 'utf8', function(err, data) {
-  if (err) {
-    return console.log(err);
-  }
-  QRCode = data;
-  console.log("id is " + data);
-});
+
+QRCode = fs.readFileSync('QR.txt', 'utf8')
+  console.log("id is " + QRCode);
 
 
 var con = mysql.createConnection({
   //host: "localhost",
-  host: "137.112.234.73",
+  host: "137.112.234.40",
   user: "Admin",
   password: "Password",
   database: "SmartWave"
@@ -39,6 +35,11 @@ con.connect(function(err) {
 	    throw err;
 	  else
         console.log('\nUpdated Info!');
+	CookingInfo = JSON.stringify(CookingInfo)
+	CookingInfo = CookingInfo.replace("[","");
+	CookingInfo = CookingInfo.replace("]","");
+	CookingInfo = JSON.parse(CookingInfo);
+	fs.writeFileSync('SleepTime.txt', JSON.stringify(CookingInfo.CookingTime))
 	process.exit();
     });
 	});
