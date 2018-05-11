@@ -1,6 +1,9 @@
 var TwitterPackage = require('twitter');
 var fs = require('fs');
 
+
+var args = process.argv.slice(2);
+
 var CookingInfo = fs.readFileSync('CookingInfo.txt', 'utf8')
 	CookingInfo = CookingInfo.replace("[","");
 	CookingInfo = CookingInfo.replace("]","");
@@ -15,12 +18,25 @@ var secret = {
 }
 var Twitter = new TwitterPackage(secret);
 
+switch (args[0]) {
+  case 'stir':
+
+Twitter.post('direct_messages/new', {user:'Briant717', text: 'Your '
+ + CookingInfo.Name + ' needs stirred!  Please stir and put back in.'}, function(error){
+  if(error){
+	console.log(error);
+}
+  });
+
+  break;
+  default:
 
 Twitter.post('direct_messages/new', {user:'Briant717', text: 'Your '
  + CookingInfo.Name + ' is done!  Please let it sit for ' +
  CookingInfo.WaitTime + ' seconds before eating.'}, function(error){
   if(error){
 	console.log(error);
-  }
+}
 });
+}
   

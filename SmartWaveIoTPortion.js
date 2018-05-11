@@ -40,6 +40,7 @@ con.connect(function(err) {
 	CookingInfo = CookingInfo.replace("]","");
 	CookingInfo = JSON.parse(CookingInfo);
 	fs.writeFileSync('SleepTime.txt', JSON.stringify(CookingInfo.CookingTime))
+	fs.writeFileSync('StirAt.txt', JSON.stringify(CookingInfo.StirAt))
 	process.exit();
     });
 	});
