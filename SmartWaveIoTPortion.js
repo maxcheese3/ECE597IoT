@@ -8,12 +8,12 @@ var CookingInfo = 1;
 
 
 QRCode = fs.readFileSync('QR.txt', 'utf8')
-  console.log("id is " + QRCode);
+  //console.log("id is " + QRCode);
 
 
 var con = mysql.createConnection({
   //host: "localhost",
-  host: "137.112.234.40",
+  host: "137.112.234.161",
   user: "Admin",
   password: "Password",
   database: "SmartWave"
@@ -21,12 +21,12 @@ var con = mysql.createConnection({
 
 con.connect(function(err) {
   if (err) throw err;
-  console.log("Connected!");
+  console.log("Connected to database...\n");
   //Get info for item id
   var sql = "SELECT * FROM items WHERE id = " + QRCode;
   con.query(sql, function (err, result) {
     if (err) throw err;
-	console.log("id Info:");
+	//console.log("id Info:");
     console.log(result);
 	CookingInfo = result;
 	//Write info for item id to text file
@@ -34,7 +34,8 @@ con.connect(function(err) {
       if (err)
 	    throw err;
 	  else
-        console.log('\nUpdated Info!');
+	console.log('\n');
+        //console.log('\nUpdated Info!');
 	CookingInfo = JSON.stringify(CookingInfo)
 	CookingInfo = CookingInfo.replace("[","");
 	CookingInfo = CookingInfo.replace("]","");
