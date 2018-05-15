@@ -27,8 +27,17 @@ Twitter.post('direct_messages/new', {user:'Briant717', text: 'Your '
 	console.log(error);
 }
   });
-
   break;
+
+  case 'est':
+
+Twitter.post('direct_messages/new', {user:'Briant717', text: 'Your' + 
+  ' food is probably ready!  Stir and let sit prior to eating.'}, function(error){
+  if(error){
+	console.log(error);
+}
+  });
+
   default:
 
 Twitter.post('direct_messages/new', {user:'Briant717', text: 'Your '

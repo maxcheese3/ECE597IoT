@@ -25,7 +25,7 @@ function countdown {
 
 function startIoT {
 	#raspistill -w 900 -h 600 -t 100 -n -o QR.jpg
-	QR=$(zbarimg --noxml -q QR.jpg)
+	QR=$(zbarimg --noxml -q NOTQR.jpg)
 	retVal=$?
 	if [ $retVal -ne 0 ];
 	  then
@@ -34,9 +34,10 @@ function startIoT {
 	    sudo python getTemp.py
 	    WEIGHT=$(cat weight.txt)
 	    TEMP=$(cat temp.txt)
-	    echo "Weight: "  $(($WEIGHT / 444)) "    Temp: "  $TEMP
-	    echo ""
-	    countdown $(($WEIGHT / 444 * (100 - ${TEMP%.*}) / 10))
+	    echo "Weight: "  $(($WEIGHT / 39)) "    Temp: "  $TEMP
+	    echo "Cooking for: " $(($WEIGHT / 39 * (100 - ${TEMP%.*}) / 200)) " seconds"
+	    countdown $(($WEIGHT / 39 * (100 - ${TEMP%.*}) / 200))
+	    node notification.js est &
 	  else
 	    echo "QR Code found:  Retrieving information..."
 	    echo ${QR:8} | tr -d '\n' > QR.txt
