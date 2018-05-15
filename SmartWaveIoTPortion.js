@@ -13,7 +13,7 @@ QRCode = fs.readFileSync('QR.txt', 'utf8')
 
 var con = mysql.createConnection({
   //host: "localhost",
-  host: "137.112.234.161",
+  host: "192.168.3.155",
   user: "Admin",
   password: "Password",
   database: "SmartWave"

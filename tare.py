@@ -11,7 +11,7 @@ def cleanAndExit():
 
 hx = HX711(5, 6)
 
-#hx.set_reading_format("LSB", "MSB")
+hx.set_reading_format("LSB", "MSB")
 
 # HOW TO CALCULATE THE REFFERENCE UNIT
 # To set the reference unit to 1. Put 1kg on your sensor or anything you have and know exactly how much it weights.
@@ -19,22 +19,16 @@ hx = HX711(5, 6)
 # and I got numbers around 184000 when I added 2kg. So, according to the rule of thirds:
 # If 2000 grams is 184000 then 1000 grams is 184000 / 2000 = 92.
 #hx.set_reference_unit(92)
-#hx.set_reference_unit(444)
+hx.set_reference_unit(444)
 
-#hx.reset()
-#hx.tare()
+hx.reset()
+hx.tare()
 
-time.sleep(0.2)
-weights = []
-i = 0
-for i in range(0,20):
-	weights.append(hx.get_weight(5))
-#print val
-weights.sort()
-file = open("weight.txt","w")
-file.write(str(weights[10])) 
- 
-file.close() 
+
+
+time.sleep(1)
+
+#print hx.get_weight(5)
 
 hx.power_down()
 hx.power_up()

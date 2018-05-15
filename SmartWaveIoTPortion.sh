@@ -34,7 +34,9 @@ function startIoT {
 	    sudo python getTemp.py
 	    WEIGHT=$(cat weight.txt)
 	    TEMP=$(cat temp.txt)
-	    echo "Weight: "  $WEIGHT "    Temp: "  $TEMP
+	    echo "Weight: "  $(($WEIGHT / 444)) "    Temp: "  $TEMP
+	    echo ""
+	    countdown $(($WEIGHT / 444 * (100 - ${TEMP%.*}) / 10))
 	  else
 	    echo "QR Code found:  Retrieving information..."
 	    echo ${QR:8} | tr -d '\n' > QR.txt
@@ -73,6 +75,7 @@ function startIoT {
 	fi
 }
 RESTARTED=1
+python tare.py
 echo "Waiting on item to be inserted..."
 while true; do
 	DOORSTATUS=$(cat /sys/class/gpio/gpio17/value)
